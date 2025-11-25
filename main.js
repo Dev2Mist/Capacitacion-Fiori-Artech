@@ -10,15 +10,30 @@ const todoList = document.querySelector("#todo-list");
 
 
 function renderTodoItem(taskName){
+    const jsonItem = {
+        name: "Tarea 1",
+        completed : false,
+        description : "Esta es la tarea 1"
+    }
     const item = document.createElement('li');
     //  Toma la estructura HTML de un todo-item y lo agrega al document
     item.innerHTML = `<li class="todo-item">
-        <span class="texto-tarea">${taskName}</span>
+        <div class='list-item-header'>
+            <h1 class="list-item-title">${jsonItem.name}</h1>
+        </div>
+        
+        <div class="list-item-body">
+            <p class="list-item-description">${jsonItem.description}</p>
+
+            <span class="list-item-completed">${jsonItem.completed}</span>
+        </div>
+
         <div class="acciones">
             <button class="btn-action btn-check">Complete✅</button>
             <button class="btn-action btn-delete">Delete🗑️</button>
             <button class="btn-action btn-modify">Update🔄</button>
         </div>
+    
     </li>`
 
     todoList.appendChild(item);
