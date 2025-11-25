@@ -1,31 +1,30 @@
-// Pasos para agregar una tarea
-// 1. Se ingresa el input
-// 2. Se clickea el boton
-// 3. Se genera el item en la lista
-
-// 1. Agregar una tarea
 const btnAdd = document.querySelector(".btn-add");
+const btnClearAll = document.querySelector(".btn-clear-all");
 const todoInput = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
 
+function renderTodoItem(){
+    // Tomo los values de cada input
+    const taskName = document.querySelector("#todo-task-name");
+    const taskDescription = document.querySelector("#todo-task-description");
 
-function renderTodoItem(taskName){
-    const jsonItem = {
-        name: "Tarea 1",
-        completed : false,
-        description : "Esta es la tarea 1"
+    let task = {
+        name : taskName.value,
+        description : taskDescription.value,
+        completed : false
     }
+
     const item = document.createElement('li');
     //  Toma la estructura HTML de un todo-item y lo agrega al document
     item.innerHTML = `<li class="todo-item">
         <div class='list-item-header'>
-            <h1 class="list-item-title">${jsonItem.name}</h1>
+            <h1 class="list-item-title">${task.name}</h1>
         </div>
         
         <div class="list-item-body">
-            <p class="list-item-description">${jsonItem.description}</p>
+            <p class="list-item-description">${task.description}</p>
 
-            <span class="list-item-completed">${jsonItem.completed}</span>
+            <span class="list-item-completed">${task.completed}</span>
         </div>
 
         <div class="acciones">
@@ -36,20 +35,35 @@ function renderTodoItem(taskName){
     
     </li>`
 
+    item.querySelector(".btn-check").addEventListener("click", () => {
+        item.querySelector(".todo-item").classList.add("green-container");
+    })
+
+    item.querySelector(".btn-delete").addEventListener("click", () => {
+        item.remove();
+    })
+
+    item.querySelector(".btn-modify").addEventListener("click", () => {
+
+    })
+
     todoList.appendChild(item);
 } 
 
 
 btnAdd.addEventListener("click", () =>{
-    // Se genera el item de la tarea
-    const inputText = todoInput.value;
+    const inputText = document.querySelector("#todo-task-name");
+    const inputDesc = document.querySelector("#todo-task-description");
 
-    if(inputText === ""){
-        alert("Estas intentando agregar una tarea vacia");
+    if(inputText === "" || inputDesc === ""){
+        alert("Estas intentando agregar una tarea con inputs vacios");
         return;
     }
 
     // Llamar a la funcion de renderizado del todo-item
-    renderTodoItem(inputText);
+    renderTodoItem();
+})
 
+btnClearAll.addEventListener("click", () => { 
+    
 })

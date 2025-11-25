@@ -1,35 +1,258 @@
-/* 2. Configuración base del cuerpo */
+/* =========================================
+   1. VARIABLES: PALETA PASTEL & CONFIG
+   ========================================= */
+:root {
+    /* Fondo General (Crema muy suave) */
+    --bg-body: #FDFBF7; 
+    
+    /* Contenedor Principal (Blanco puro) */
+    --bg-card: #FFFFFF;
+    
+    /* Textos (Gris Carbón - más suave que el negro) */
+    --text-primary: #4A4A4A;
+    --text-secondary: #8C8C8C;
+
+    /* Acciones Pastel (Colores estilo "Macaron") */
+    --color-primary: #A0C4FF; /* Azul Cielo suave (Crear) */
+    --color-success: #B9FBC0; /* Menta (Completar) */
+    --color-danger:  #FFB7B2; /* Rosa Salmón (Borrar) */
+    --color-warning: #FDFFB6; /* Amarillo Vainilla (Editar) */
+    
+    /* UI Helpers */
+    --radius: 16px; /* Bordes muy redondeados */
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.05); /* Sombra difusa */
+    --shadow-hover: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset Básico (Asegúrate de incluir el reset que te pasé antes al inicio) */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ul { list-style: none; }
+button { border: none; outline: none; background: none; font-family: inherit; }
+
+/* =========================================
+   2. CUERPO Y LAYOUT
+   ========================================= */
 body {
-    min-height: 100vh; /* Ocupa al menos toda la altura de la pantalla */
-    line-height: 1.5;  /* Altura de línea legible por defecto */
-    font-family: system-ui, -apple-system, sans-serif; /* Fuente rápida y nativa */
-    -webkit-font-smoothing: antialiased; /* Texto más nítido en Mac/iOS */
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centrado total en pantalla */
+    padding: 20px;
 }
 
-/* 3. Imágenes y medios responsive */
-img, picture, video, canvas, svg {
-    display: block;    /* Elimina el espacio extra debajo de las imágenes */
-    max-width: 100%;   /* Evita que se salgan de su contenedor */
+/* =========================================
+   3. CONTENEDOR PRINCIPAL (La Tarjeta)
+   ========================================= */
+.todo-container {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 550px;
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-soft);
 }
 
-/* 4. Controles de formulario (Inputs, Botones) */
-input, button, textarea, select {
-    font: inherit;     /* Heredan la fuente del body (por defecto no lo hacen) */
-    border: none;      /* Opcional: Quita bordes feos por defecto */
-    outline: none;     /* Opcional: Quita el borde azul al hacer click (cuidado con accesibilidad) */
+.header-main {
+    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
-/* 5. Listas (Ideal para tu Todo List) */
-ul, ol {
-    list-style: none;  /* Quita los puntos o números por defecto */
+.titulo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px; /* Estilo moderno */
+    color: var(--text-primary);
+    position: relative;
+    display: inline-block;
 }
 
-/* 6. Enlaces */
-a {
-    text-decoration: none; /* Quita el subrayado */
-    color: inherit;        /* Hereda el color del texto padre */
+/* Pequeño adorno pastel debajo del título */
+.titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: var(--color-primary);
+    opacity: 0.3;
+    z-index: -1;
+    border-radius: 4px;
 }
 
+/* =========================================
+   4. INPUT AREA
+   ========================================= */
+.input-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 2rem;
+    background: #F5F7FA; /* Fondo gris muy tenue para el input group */
+    padding: 8px;
+    border-radius: var(--radius);
+}
 
+#todo-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
 
+#todo-input::placeholder {
+    color: #B0B0B0;
+}
 
+.btn-add {
+    background-color: var(--color-primary);
+    color: white; /* Texto blanco en el botón principal */
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 12px; /* Un poco menos redondeado que el container */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(160, 196, 255, 0.4);
+}
+
+.btn-add:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+}
+
+/* =========================================
+   5. LISTA DE ITEMS (Tarjetas Internas)
+   ========================================= */
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.todo-item {
+    background-color: #FFFFFF;
+    border: 1px solid #F0F0F0; /* Borde casi invisible */
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.todo-item:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    transform: translateY(-2px);
+}
+
+/* Header del Item */
+.list-item-header {
+    margin-bottom: 8px;
+}
+
+.list-item-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Cuerpo del Item */
+.list-item-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.list-item-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-right: 15px;
+}
+
+.list-item-completed {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    background-color: #F0F2F5;
+    color: var(--text-secondary);
+    border-radius: 20px;
+    white-space: nowrap; /* Evita que el texto baje */
+}
+
+/* =========================================
+   6. BOTONES DE ACCIÓN (Estilo Pastel)
+   ========================================= */
+.acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s;
+    
+    /* En pastel, usamos texto oscuro para legibilidad */
+    color: #555; 
+}
+
+.btn-action:hover {
+    filter: brightness(0.95); /* Oscurece un poquito al pasar el mouse */
+}
+
+/* Colores Específicos */
+.btn-check {
+    background-color: var(--color-success);
+}
+
+.btn-delete {
+    background-color: var(--color-danger);
+}
+
+.btn-modify {
+    background-color: var(--color-warning);
+}
+
+/* =========================================
+   7. FOOTER
+   ========================================= */
+.todo-footer {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #F5F5F5;
+    padding-top: 1.5rem;
+}
+
+#contador {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.btn-clear-all {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-clear-all:hover {
+    color: var(--color-danger); /* Se pone rojizo al pasar el mouse */
+    text-decoration: underline;
+}
+
+.green-container {
+    background-color: rgb(80, 235, 80);
+}
