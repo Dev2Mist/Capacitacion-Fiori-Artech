@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Todo List</title>
+    <link rel="stylesheet" href="./styles.css">
+
+</head>
+<body>
+
+    <header class="header-main">
+        <h1 class="titulo">TODO-LIST</h1>
+    </header>
+
+    <main class="todo-container" id="todo-main-container">
+        
+        <div class="input-container">
+            <input type="text" id="todo-input" placeholder="Escribe una nueva tarea...">
+            <button class="todo-btn btn-add" id="btn-crear">
+                <i></i> Agregar
+            </button>
+        </div>
+
+        <div class="todo-list-container">
+            <ul class="todo-list" id="lista-tareas">
+                <li class="todo-item">
+                    <span class="texto-tarea">Ejemplo de tarea</span>
+                    <div class="acciones">
+                        <button class="btn-action btn-check">✅</button>
+                        <button class="btn-action btn-delete">🗑️</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="todo-footer">
+            <span id="contador">Tienes 1 tarea pendiente</span>
+            <button class="todo-btn btn-clear-all">Borrar todo</button>
+        </div>
+
+    </main>
+
+    <script src="./main.js"></script>
+
+</body>
+</html>
