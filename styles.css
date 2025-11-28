@@ -3,31 +3,52 @@
    ========================================= */
 :root {
     /* Fondo General (Crema muy suave) */
-    --bg-body: #FDFBF7; 
-    
+    --bg-body: #b5bdf5;
+
     /* Contenedor Principal (Blanco puro) */
     --bg-card: #FFFFFF;
-    
+
     /* Textos (Gris Carbón - más suave que el negro) */
     --text-primary: #4A4A4A;
     --text-secondary: #8C8C8C;
 
     /* Acciones Pastel (Colores estilo "Macaron") */
-    --color-primary: #A0C4FF; /* Azul Cielo suave (Crear) */
-    --color-success: #B9FBC0; /* Menta (Completar) */
-    --color-danger:  #FFB7B2; /* Rosa Salmón (Borrar) */
-    --color-warning: #FDFFB6; /* Amarillo Vainilla (Editar) */
-    
+    --color-primary: #A0C4FF;
+    /* Azul Cielo suave (Crear) */
+    --color-success: #6ed478;
+    /* Menta (Completar) */
+    --color-danger: #FFB7B2;
+    /* Rosa Salmón (Borrar) */
+    --color-warning: #FDFFB6;
+    /* Amarillo Vainilla (Editar) */
+
     /* UI Helpers */
-    --radius: 16px; /* Bordes muy redondeados */
-    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.05); /* Sombra difusa */
+    --radius: 16px;
+    /* Bordes muy redondeados */
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.05);
+    /* Sombra difusa */
     --shadow-hover: 0 15px 45px rgba(0, 0, 0, 0.08);
 }
 
 /* Reset Básico (Asegúrate de incluir el reset que te pasé antes al inicio) */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-ul { list-style: none; }
-button { border: none; outline: none; background: none; font-family: inherit; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: inherit;
+}
 
 /* =========================================
    2. CUERPO Y LAYOUT
@@ -39,7 +60,8 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center; /* Centrado total en pantalla */
+    align-items: center;
+    /* Centrado total en pantalla */
     padding: 20px;
 }
 
@@ -63,7 +85,8 @@ body {
 .titulo {
     font-size: 1.8rem;
     font-weight: 800;
-    letter-spacing: -1px; /* Estilo moderno */
+    letter-spacing: -1px;
+    /* Estilo moderno */
     color: var(--text-primary);
     position: relative;
     display: inline-block;
@@ -90,9 +113,15 @@ body {
     display: flex;
     gap: 12px;
     margin-bottom: 2rem;
-    background: #F5F7FA; /* Fondo gris muy tenue para el input group */
+    background: #F5F7FA;
+    /* Fondo gris muy tenue para el input group */
     padding: 8px;
     border-radius: var(--radius);
+    text-align: center;
+}
+
+.input-container input {
+    text-align: center;
 }
 
 #todo-input {
@@ -110,10 +139,12 @@ body {
 
 .btn-add {
     background-color: var(--color-primary);
-    color: white; /* Texto blanco en el botón principal */
+    color: white;
+    /* Texto blanco en el botón principal */
     font-weight: 600;
     padding: 10px 24px;
-    border-radius: 12px; /* Un poco menos redondeado que el container */
+    border-radius: 12px;
+    /* Un poco menos redondeado que el container */
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 4px 10px rgba(160, 196, 255, 0.4);
@@ -121,7 +152,7 @@ body {
 
 .btn-add:hover {
     transform: translateY(-2px);
-    filter: brightness(0.95);
+    background-color: #7f9bc9;
 }
 
 /* =========================================
@@ -135,16 +166,18 @@ body {
 
 .todo-item {
     background-color: #FFFFFF;
-    border: 1px solid #F0F0F0; /* Borde casi invisible */
+    border: 1px solid #F0F0F0;
+    /* Borde casi invisible */
     border-radius: var(--radius);
     padding: 20px;
     transition: all 0.3s ease;
     position: relative;
+    border: 2px solid rgb(50, 50, 92);
 }
 
 .todo-item:hover {
-    border-color: var(--color-primary);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    border-color: #2562c5;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
     transform: translateY(-2px);
 }
 
@@ -182,7 +215,8 @@ body {
     background-color: #F0F2F5;
     color: var(--text-secondary);
     border-radius: 20px;
-    white-space: nowrap; /* Evita que el texto baje */
+    white-space: nowrap;
+    /* Evita que el texto baje */
 }
 
 /* =========================================
@@ -193,6 +227,28 @@ body {
     gap: 10px;
 }
 
+.todo-btn {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    cursor: pointer;
+
+    /* Estructura */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+    /* Radio consistente */
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    /* Transiciones suaves para todos */
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* Sombra sutil base */
+}
+
 .btn-action {
     flex: 1;
     padding: 10px;
@@ -201,13 +257,14 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: filter 0.2s;
-    
+
     /* En pastel, usamos texto oscuro para legibilidad */
-    color: #555; 
+    color: #555;
 }
 
 .btn-action:hover {
-    filter: brightness(0.95); /* Oscurece un poquito al pasar el mouse */
+    /* Oscurece un poquito al pasar el mouse */
+    filter: brightness(0.88);
 }
 
 /* Colores Específicos */
@@ -219,7 +276,7 @@ body {
     background-color: var(--color-danger);
 }
 
-.btn-modify {
+.btn-update {
     background-color: var(--color-warning);
 }
 
@@ -249,10 +306,128 @@ body {
 }
 
 .btn-clear-all:hover {
-    color: var(--color-danger); /* Se pone rojizo al pasar el mouse */
+    color: var(--color-danger);
+    /* Se pone rojizo al pasar el mouse */
     text-decoration: underline;
 }
 
 .green-container {
-    background-color: rgb(80, 235, 80);
+    background-color: rgb(183, 250, 183);
+}
+
+/* =========================================
+   8. MODAL
+   ========================================= */
+
+/* 1. El Contenedor Principal (El Overlay/Fondo oscuro) */
+.modal-container {
+    /* Oculto por defecto */
+    display: none;
+
+    /* Fijo en la pantalla, ignora el scroll */
+    position: fixed;
+
+    /* Siempre encima de todo */
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Negro con transparencia */
+    background-color: rgba(0, 0, 0, 0.5);
+
+    /* Flexbox para centrar la caja perfectamente */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Clase para mostrar el modal desde JS */
+.modal-container.show {
+    display: flex;
+}
+
+/* 2. La Caja del Modal (El contenido blanco) */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    /* Que no sea gigante en PC */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s;
+    /* Pequeña animación de entrada */
+}
+
+/* Estilos internos del modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close-modal {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-body input,
+.modal-body textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    /* Botones a la derecha */
+    gap: 10px;
+}
+
+/* Botones específicos del modal */
+.btn-cancel {
+    background-color: #ccc;
+    color: #161616;
+}
+
+.btn-cancel:hover {
+    background-color: #949494;
+}
+
+.btn-save {
+    background-color: #28a745;
+    /* Verde para guardar */
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #208137;
+}
+
+/* Animación simple */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
