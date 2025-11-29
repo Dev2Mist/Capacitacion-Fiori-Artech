@@ -3,7 +3,7 @@
    ========================================= */
 :root {
     /* Fondo General (Crema muy suave) */
-    --bg-body: #b5bdf5;
+    --bg-body: #7339a3dc;
 
     /* Contenedor Principal (Blanco puro) */
     --bg-card: #FFFFFF;
@@ -12,15 +12,18 @@
     --text-primary: #4A4A4A;
     --text-secondary: #8C8C8C;
 
+    --side-bar-card: rgba(79, 35, 161, 0.856);
+
     /* Acciones Pastel (Colores estilo "Macaron") */
     --color-primary: #A0C4FF;
     /* Azul Cielo suave (Crear) */
     --color-success: #6ed478;
     /* Menta (Completar) */
-    --color-danger: #FFB7B2;
+    --color-danger: #fa7b72;
     /* Rosa Salmón (Borrar) */
     --color-warning: #FDFFB6;
     /* Amarillo Vainilla (Editar) */
+
 
     /* UI Helpers */
     --radius: 16px;
@@ -72,7 +75,7 @@ body {
 .todo-container {
     background-color: var(--bg-card);
     width: 100%;
-    max-width: 550px;
+    max-width: 750px;
     border-radius: var(--radius);
     padding: 2.5rem;
     box-shadow: var(--shadow-soft);
@@ -114,15 +117,24 @@ body {
     display: flex;
     gap: 12px;
     margin-bottom: 2rem;
-    background: #F5F7FA;
     /* Fondo gris muy tenue para el input group */
     padding: 8px;
     border-radius: var(--radius);
     text-align: center;
+    width: 100%;
 }
 
 .input-container input {
     text-align: center;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+#todo-task-name {
+    flex-grow: 0.3;
+}
+
+#todo-task-description {
+    flex-grow: 0.7;
 }
 
 #todo-input {
@@ -139,7 +151,7 @@ body {
 }
 
 .btn-add {
-    background-color: var(--color-primary);
+    background-color: rgba(71, 139, 248, 0.658);
     color: white;
     /* Texto blanco en el botón principal */
     font-weight: 600;
@@ -153,7 +165,7 @@ body {
 
 .btn-add:hover {
     transform: translateY(-2px);
-    background-color: #7f9bc9;
+    background-color: #477bce;
 }
 
 /* =========================================
@@ -291,7 +303,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #F5F5F5;
+    border-top: 2px solid #fad2d281;
     padding-top: 1.5rem;
 }
 
@@ -302,20 +314,65 @@ body {
 
 .btn-clear-all {
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: white;
+    background-color: var(--color-danger);
     font-weight: 500;
     cursor: pointer;
-    transition: color 0.2s;
 }
 
 .btn-clear-all:hover {
-    color: var(--color-danger);
-    /* Se pone rojizo al pasar el mouse */
-    text-decoration: underline;
+    background-color: rgba(218, 11, 11, 0.589);
 }
 
+/* Clase que tu JS agrega */
 .green-container {
-    background-color: rgb(183, 250, 183);
+    /* Aseguramos que el color cambie */
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+
+    /* ACTIVAMOS LA ANIMACIÓN */
+    /* Dura 0.8s (800ms) para coincidir EXACTAMENTE con tu setTimeout */
+    animation: completedExit 0.8s forwards;
+
+    /* Opcional: deshabilitar interacción mientras se anima */
+    pointer-events: none;
+}
+
+/* Definición de la animación */
+@keyframes completedExit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    40% {
+        /* Se mantiene visible un ratito para ver el check verde */
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        /* Efecto visual: se achica y se va un poco a la izquierda (hacia el sidebar) */
+        transform: scale(0.8) translateX(-50px);
+    }
+}
+
+/* Animación de entrada para el sidebar */
+.slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* =========================================
@@ -393,6 +450,12 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+
+.modal-body textarea {
+    height: 150px;
+    resize: none;
 }
 
 .modal-footer {
@@ -515,6 +578,9 @@ body {
 .completed-list-task {
     display: flex;
     justify-content: space-between;
+    background: var(--side-bar-card);
+    padding: 20px;
+    border-radius: 12px;
 }
 
 /* El contenedor de la lista */
@@ -561,10 +627,9 @@ body {
 }
 
 .completed-item-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text-secondary);
-    /* Tachado */
+    color: white;
     margin: 0;
 
     /* Puntos suspensivos si es muy largo */
@@ -575,7 +640,7 @@ body {
 }
 
 .completed-item-datetime {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: #ccc;
     margin: 0;
     font-style: italic;
