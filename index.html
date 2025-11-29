@@ -11,7 +11,21 @@
 
 <body>
 
-    <main class="todo-container" id="todo-main-container">
+    <aside class="sidebar-container">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Completadas</h2>
+            <span id="contador-completadas" class="sidebar-counter">0</span>
+        </div>
+
+        <div class="sidebar-scroll-area">
+            <ul id="lista-completadas" class="completed-list">
+
+
+            </ul>
+        </div>
+    </aside>
+
+    <main class=" todo-container" id="todo-main-container">
         <header class="header-main">
             <h1 class="titulo">TODO-APP</h1>
         </header>
@@ -65,6 +79,7 @@
     </main>
 
     <script src="./main.js"></script>
+    <script src="./js/render.js"></script>
 
 </body>
 
