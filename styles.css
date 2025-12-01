@@ -667,101 +667,105 @@ body {
 
     /* 1. Ajustes Generales del Cuerpo */
     body {
-        padding: 10px;
-        /* Menos espacio en los bordes de la pantalla */
+        padding: 10px;       /* Quitamos el padding-left: 300px */
+        flex-direction: column; /* Apilamos los elementos verticalmente */
+        justify-content: flex-start; /* Alineación superior */
+        height: auto; /* Permitir scroll en el body */
     }
 
-    /* 2. Contenedor Principal más compacto */
+    /* 2. REPARACIÓN DEL SIDEBAR */
+    /* Lo convertimos de una barra lateral fija a un bloque al final de la página */
+    .sidebar-container {
+        position: relative; /* Ya no flota fijo */
+        width: 100%;        /* Ancho completo del móvil */
+        height: auto;       /* Altura automática, no 100vh */
+        top: auto;
+        left: auto;
+        
+        box-shadow: none;   /* Quitamos sombra lateral */
+        border-top: 4px solid #e0e0e0; /* Separador visual arriba */
+        
+        /* Usamos 'order' para mandarlo al final, debajo de la App principal */
+        order: 2; 
+        margin-top: 2rem;
+        border-radius: var(--radius);
+        z-index: 1; /* Bajamos el nivel para que no tape modales */
+    }
+
+    /* Ajuste del área de scroll dentro del sidebar móvil */
+    .sidebar-scroll-area {
+        max-height: 300px; /* Altura máxima para que no sea eterno */
+        overflow-y: auto;
+    }
+
+    /* 3. Contenedor Principal (La App de tareas) */
     .todo-container {
+        order: 1; /* Aparece PRIMERO visualmente */
         padding: 1.5rem;
-        /* Reducimos el relleno interno */
         width: 100%;
+        margin-bottom: 20px;
     }
 
     .titulo {
         font-size: 1.5rem;
-        /* Título un poco más pequeño */
     }
 
-    /* 3. Área de Inputs (Stacked/Apilada) 
-       En móvil es mejor tener los inputs uno debajo del otro para escribir cómodo */
+    /* 4. Área de Inputs (Stacked/Apilada) */
     .input-container {
         flex-direction: column;
-        /* Cambia de fila a columna */
         gap: 10px;
         background: transparent;
-        /* Quitamos el fondo gris en móvil si se ve muy cargado */
         padding: 0;
     }
 
     .input-container input {
         width: 100%;
         background: #F5F7FA;
-        /* Le devolvemos el fondo al input individual */
         border-radius: 12px;
         padding: 12px;
     }
 
     .btn-add {
         width: 100%;
-        /* Botón de crear ancho completo */
         margin-top: 5px;
     }
 
-    /* 4. Lista de Tareas */
+    /* 5. Lista de Tareas */
     .todo-item {
         padding: 15px;
-        /* Menos relleno en la tarjeta */
     }
 
     .list-item-body {
         flex-direction: column;
-        /* Descripción arriba, badge abajo */
         align-items: flex-start;
-        /* Alineado a la izquierda */
         gap: 8px;
     }
 
     .list-item-completed {
         align-self: flex-start;
-        /* Que el badge no se estire */
         font-size: 0.7rem;
     }
 
-    /* 5. Botones de Acción (Wrap)
-       Si no caben en una línea, bajan a la siguiente */
+    /* 6. Botones de Acción */
     .acciones {
         flex-wrap: wrap;
     }
 
     .btn-action {
-        flex: 1 1 100%;
-        /* En pantallas MUY pequeñas, cada botón ocupa toda la linea */
+        flex: 1 1 100%; /* Botones anchos para dedos */
         min-width: 80px;
-        /* Ancho mínimo para que no se aplasten */
         padding: 12px;
-        /* Más área táctil para el dedo */
     }
 
-    /* Opcional: Si quieres que en móviles normales queden 3 en linea pero más pequeños:
-    .btn-action {
-         flex: 1;
-         font-size: 0.75rem;
-         padding: 8px;
-    }
-    */
-
-    /* 6. Modal Responsive */
+    /* 7. Modal Responsive */
     .modal-content {
         width: 95%;
-        /* Ocupa casi todo el ancho */
         padding: 15px;
         margin: 10px;
     }
 
     .modal-footer {
         flex-direction: column-reverse;
-        /* Botón guardar arriba, cancelar abajo */
         gap: 10px;
     }
 
