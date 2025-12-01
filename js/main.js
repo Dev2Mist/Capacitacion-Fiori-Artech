@@ -7,7 +7,12 @@ import {
   deleteTaskFromStorage,
   getAllTasksFromStorage,
 } from "./storage.js";
-import { clearMainInputs, renderTodoItem, showUpdateModal } from "./ui.js";
+import {
+  clearMainInputs,
+  renderTodoItem,
+  showUpdateModal,
+  renderCompletedTask,
+} from "./ui.js";
 
 const btnAdd = document.querySelector(".btn-add");
 const btnClearAll = document.querySelector(".btn-clear-all");
