@@ -1,13 +1,32 @@
-// ================================================
-// MODULARIZACIÓN DE FUNCIONES - IMPORTS
-// ================================================
+// ===================================================================================================
+// ===================================================================================================
+//                                    main.js -> CONTROLADOR
+// ===================================================================================================
+// ===================================================================================================
+
+// ###################################################################################################
+//  ==================================================================================================
+//  Es el archivo encargado de recibir las acciones del usuario desde la Vista (ui.js) y le indica al
+//  Modelo (storage.js) que guarde los datos en localStorage
+//  ==================================================================================================
+// ###################################################################################################
+
+// ===================================================================================================
+//          IMPORTS DE TODO LO NECESARIO PARA FUNCIONAR
+// ===================================================================================================
+
 import { generateId } from "./utils.js";
 import {
   saveTaskToStorage,
   deleteTaskFromStorage,
   getAllTasksFromStorage,
 } from "./storage.js";
-import { clearMainInputs, renderTodoItem, showUpdateModal } from "./ui.js";
+import {
+  clearMainInputs,
+  renderTodoItem,
+  showUpdateModal,
+  renderCompletedTask,
+} from "./ui.js";
 
 const btnAdd = document.querySelector(".btn-add");
 const btnClearAll = document.querySelector(".btn-clear-all");
@@ -17,7 +36,9 @@ function init() {
   const tasks = getAllTasksFromStorage();
 
   tasks.forEach((taskJSON) => {
+    // Si la tarea tiene el campo 'completed' en true, entonces se renderiza en el sidebar
     if (taskJSON.completed) renderCompletedTask(taskJSON);
+    // Sino, se renderiza en la todo list principal
     else
       renderTodoItem(taskJSON, {
         onComplete: handleCompleteTask,
@@ -107,8 +128,14 @@ function handleCompleteTask(itemHTML) {
   }
 }
 
+/**
+ *
+ * @param {*} taskJSON: Es el JSON de la tarea que será modificada en el modal
+ * Esta sería una función de two-way binding, ya que se actualiza el modelo y la UI
+ */
 function handleUpdateTask(taskJSON) {
-  // Muestro el modal y lo modifico
+  //! Es importante aclarar que showUpdateModal está definida en el archivon ui.js, donde se explica mucho más claro su funcionamiento
+
   showUpdateModal(taskJSON, (newTitle, newDesc) => {
     if (newTitle !== "" && newDesc !== "") {
       taskJSON.name = newTitle;
@@ -143,9 +170,3 @@ function generateTaskJSON() {
     completed: false,
   };
 }
-
-// TODO -> Falta agregarle una animación al completar una tarea ✅
-// TODO -> Falta agregarle estilos a la card del sidebar ✅
-// TODO -> Falta aplicar localStorage para la permanencia de datos ✅
-// TODO -> Falta modularizar la aplicacion para una mejor organizacion ✅
-// TODO -> Cuando se agrega una tarea, vaciar los inputs ✅

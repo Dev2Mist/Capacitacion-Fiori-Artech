@@ -1,6 +1,16 @@
-// ==========================================
-// UI.JS - Manejo del DOM e Interfaz
-// ==========================================
+// ===================================================================================================
+// ===================================================================================================
+//                                          ui.js -> VISTA
+// ===================================================================================================
+// ===================================================================================================
+
+// ###################################################################################################
+//  ==================================================================================================
+//  ui.js es el "pintor" de mi bonita aplicación to-do, se encarga de que todo se vea correctamente,
+//  renderizar elementos, agregarle colorcitos, darle animaciones a los elementos HTML
+//
+//  ==================================================================================================
+// ###################################################################################################
 
 // Selectores internos del módulo UI
 const todoList = document.querySelector("#todo-list");
@@ -84,8 +94,10 @@ export function renderCompletedTask(taskJSON) {
 }
 
 /**
- * Maneja la lógica visual del Modal de Actualización.
- * Recibe la tarea y una función para guardar los cambios.
+ * Se encarga de renderizar el modal de actualización y de avisarle a main.js que
+ * se han ingresado datos para modificar el nombre y descripción de la tarea.
+ * @param {*} taskJSON -> Representa la tarea en formato JSON, se podrá utilizar para acceder a los campos
+ * @param {*} onSave -> Es una arrow function utilizada que va a recibir el nuevo titulo y la nueva descripcion de la tarea.
  */
 export function showUpdateModal(taskJSON, onSave) {
   // onSave sirve para manejar las acciones cuando el usuario modifica
@@ -107,7 +119,11 @@ export function showUpdateModal(taskJSON, onSave) {
   modal.classList.add("show");
 
   // Configurar cierre
+
+  // Creo una funcion closeModal para cerrar el modal
   const closeModal = () => modal.classList.remove("show");
+
+  // Si se clickea el boton close-modal o modal-cancel, se cierra el modal
   modal.querySelector("#btn-close-modal").onclick = closeModal;
   modal.querySelector("#btn-modal-cancel").onclick = closeModal;
 
@@ -131,11 +147,13 @@ export function showUpdateModal(taskJSON, onSave) {
       taskHTML.querySelector(".list-item-description").textContent = newDesc;
     }
 
-    // Ahora llamamos a la funcion onSave, ya que en este punto, el usuario
-    // ya clickeo el boton "guardar cambios" y lepasamos los inputs del modal
-    // para que pueda modificarlos en el JSON
+    // Le pasamos a onSave el titulo y descripcion obtenidos del modal a main.js para que modifique no tan solo la UI
+    // sino también los datos en localStorage
     onSave(newTitle, newDesc);
 
+    //! Podemos ver el uso de onSave más claramente en el archivo main.js línea 131
+
+    // Cierro el modal ya que se clickeo el boton "save"
     closeModal();
   };
 }
