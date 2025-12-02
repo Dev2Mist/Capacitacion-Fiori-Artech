@@ -1,0 +1,11 @@
+{
+  "name": "artech.capacitacion.fiori",
+  "version": "0.0.1",
+  "description": "Aplicacion Fiori",
+  "scripts": {
+    "start": "ui5 serve -o index.html"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^3.10.3"
+  }
+}

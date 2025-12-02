@@ -1,0 +1,16 @@
+# Es como el dni de mi proyecto, contiene información que permite identificar las librerías,
+specVersion: "4.0" # Es la version especifica del archivo
+metadata:
+  name: artech.capacitacion.fiori # Es el nombre del proyecto
+type: application # Indica que es una aplicacion y no una librería, por ejemplo
+# Definoel framework que voy a utilizar, en este caso OpenUI5 pero tambien podrias ser UI5
+framework:
+  name: OpenUI5
+  version: "1.143.0"
+  # Son las librerias que vamos a utilizar en nuestro proyecto
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ui.layout
+    - name: themelib_sap_horizon
+# El comando "ui5 use OpenUI5@latest" permite instalar el framework OpenUI5 en su ultima version

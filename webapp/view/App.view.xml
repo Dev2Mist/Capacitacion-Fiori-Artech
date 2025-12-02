@@ -1,0 +1,16 @@
+<mvc:View
+    controllerName="artech.capacitacion.fiori.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+
+    <Page id="page" title="{i18n>appTitle}">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="{i18n>labelNombre}" />
+                <Input id="inputNombre" placeholder="Escribe aquí..." />
+                <Button text="{i18n>btnSaludar}" press=".onSaludar" type="Emphasized" />
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
