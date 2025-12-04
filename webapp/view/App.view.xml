@@ -1,0 +1,18 @@
+<mvc:View
+    controllerName="mi.app.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+
+    <App>
+        <Page title="Inicio Limpio">
+            <content>
+                <VBox class="sapUiSmallMargin">
+                    <Label text="Tu Nombre:" />
+                    <Input id="miInput" placeholder="Escribe aquí..." />
+                    <Button text="Saludar" press=".onPulsar" type="Emphasized" />
+                </VBox>
+            </content>
+        </Page>
+    </App>
+</mvc:View>
